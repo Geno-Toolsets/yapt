@@ -20,9 +20,15 @@ kotlin {
     }
 
     nativeTarget.apply {
+        compilations.getByName("main") {
+            cinterops {
+                val libcurl by creating
+            }
+        }
         binaries {
             executable {
                 entryPoint = "com.geno1024.toolsets.yapt.main"
+                runTask?.args("init")
             }
         }
     }
