@@ -3,7 +3,6 @@ package com.geno1024.toolsets.wrapper.curl
 import kotlinx.cinterop.*
 import libcurl.*
 import platform.posix.*
-import platform.zlib.voidp
 import platform.zlib.voidpVar
 
 class Curl
