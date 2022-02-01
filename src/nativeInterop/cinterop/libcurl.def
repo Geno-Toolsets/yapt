@@ -3,3 +3,6 @@ headerFilter = curl/*
 
 compilerOpts.linux = -I/usr/include
 linkerOpts.linux = -L/usr/lib -lcurl
+
+compilerOpts.mingw_x64 = -IC:\\cygwin64\\usr\\x86_64-w64-mingw32\\sys-root\\mingw\\include
+linkerOpts.mingw_x64 = C:\\cygwin64\\usr\\x86_64-w64-mingw32\\sys-root\\mingw\\lib\\libcurl.a C:\\cygwin64\\usr\\x86_64-w64-mingw32\\sys-root\\mingw\\lib\\libnghttp2.dll.a C:\\cygwin64\\usr\\x86_64-w64-mingw32\\sys-root\\mingw\\lib\\libssh2.dll.a C:\\cygwin64\\usr\\x86_64-w64-mingw32\\sys-root\\mingw\\lib\\libwldap32.a C:\\cygwin64\\usr\\x86_64-w64-mingw32\\sys-root\\mingw\\lib\\libssl.a C:\\cygwin64\\usr\\x86_64-w64-mingw32\\sys-root\\mingw\\lib\\libcrypto.a C:\\cygwin64\\usr\\x86_64-w64-mingw32\\sys-root\\mingw\\lib\\libz.a C:\\cygwin64\\usr\\x86_64-w64-mingw32\\sys-root\\mingw\\lib\\libgdi32.a C:\\cygwin64\\usr\\x86_64-w64-mingw32\\sys-root\\mingw\\lib\\libcrypt32.a C:\\cygwin64\\usr\\x86_64-w64-mingw32\\sys-root\\mingw\\lib\\libzstd.a -v
