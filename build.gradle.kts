@@ -10,6 +10,7 @@ repositories {
 }
 
 kotlin {
+    /*
     val hostOs = System.getProperty("os.name")
     val isMingwX64 = hostOs.startsWith("Windows")
     val nativeTarget = when {
@@ -23,14 +24,14 @@ kotlin {
             cinterops {
                 val libcurl by creating
             }
-            copy {
-                from("C:\\cygwin64\\usr\\x86_64-w64-mingw32\\sys-root\\mingw\\bin\\libnghttp2-14.dll", "C:\\cygwin64\\usr\\x86_64-w64-mingw32\\sys-root\\mingw\\bin\\libssh2-1.dll")
-                into(layout.buildDirectory)
-            }
         }
         binaries {
             executable {
                 entryPoint = "com.geno1024.toolsets.yapt.main"
+                copy {
+                    from("C:\\cygwin64\\usr\\x86_64-w64-mingw32\\sys-root\\mingw\\bin\\libnghttp2-14.dll", "C:\\cygwin64\\usr\\x86_64-w64-mingw32\\sys-root\\mingw\\bin\\libssh2-1.dll")
+                    into(outputDirectory)
+                }
                 runTask?.args("init")
             }
         }
@@ -40,27 +41,11 @@ kotlin {
         val nativeMain by getting
     }
 
-/*
+*/
     linuxX64()
-    mingwX64() {
-        compilations.getByName("main") {
-            copy {
-                from("C:\\cygwin64\\usr\\x86_64-w64-mingw32\\sys-root\\mingw\\bin\\libnghttp2-14.dll", "C:\\cygwin64\\usr\\x86_64-w64-mingw32\\sys-root\\mingw\\bin\\libssh2-1.dll")
-                into(layout.buildDirectory)
-            }
-        }
-    }
+    mingwX64()
 
-    targets.filterIsInstance<KotlinNativeTargetWithHostTests>().forEach {
-        it.compilations.getByName("main") {
-            cinterops {
-                val libcurl by creating
-            }
-//            copy {
-//                from("C:\\cygwin64\\usr\\x86_64-w64-mingw32\\sys-root\\mingw\\bin\\libnghttp2-14.dll", "C:\\cygwin64\\usr\\x86_64-w64-mingw32\\sys-root\\mingw\\bin\\libssh2-1.dll")
-//                into(layout.buildDirectory)
-//            }
-        }
+    targets.filterIsInstance<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTargetWithHostTests>().forEach {
         it.binaries {
             executable {
                 entryPoint = "com.geno1024.toolsets.yapt.main"
@@ -68,13 +53,9 @@ kotlin {
             }
         }
     }
+}
 
-    sourceSets {
-        val linuxX64Main by getting
-        val mingwX64Main by getting
-        val nativeMain by creating {
-            linuxX64Main.dependsOn(this)
-            mingwX64Main.dependsOn(this)
-        }
-    }*/
+tasks.withType<Wrapper> {
+    gradleVersion = "7.3"
+    distributionType = Wrapper.DistributionType.ALL
 }

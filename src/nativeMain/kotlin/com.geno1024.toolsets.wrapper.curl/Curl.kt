@@ -18,6 +18,7 @@ class Curl
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, staticCFunction<voidpVar, size_t, size_t, voidpVar, size_t> { contents, size, nmemb, userp ->
             val realsize = size * nmemb
             userp.value = contents.reinterpret<ByteVarOf<Byte>>().ptr
+            println(realsize)
             realsize
         })
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, targetP)
@@ -32,6 +33,7 @@ class Curl
         curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1)
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, staticCFunction<voidpVar, size_t, size_t, voidpVar, size_t> { contents, size, nmemb, userp ->
             val realsize = size * nmemb
+            println(realsize)
             val fp = fopen(userp.reinterpret<ByteVarOf<Byte>>().ptr.toKStringFromUtf8(), "wb")
             fwrite(contents.reinterpret<ByteVarOf<Byte>>().ptr, realsize, 1, fp)
             fclose(fp)

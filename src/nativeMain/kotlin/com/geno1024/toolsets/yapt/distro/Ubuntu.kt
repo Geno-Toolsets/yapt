@@ -11,6 +11,6 @@ object Ubuntu : Distribution(PackageManager.APT)
 
     override fun init()
     {
-        println(curl.GET("https://mirrors.tuna.tsinghua.edu.cn/ubuntu"))
+        println(curl.GET("https://mirrors.tuna.tsinghua.edu.cn/ubuntu", "ubuntu"))
     }
 }
