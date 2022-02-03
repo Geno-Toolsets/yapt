@@ -10,4 +10,6 @@ actual object HTTP
         get() = TODO("Not yet implemented")
     actual val UA: String
         get() = TODO("Not yet implemented")
+    actual val no_proxy: String
+        get() = TODO("Not yet implemented")
 }
